@@ -1,7 +1,6 @@
 package vPRG2.v001;
 
 import utils.Console;
-import java.util.function.Supplier;
 
 class Monitor {
     private static final int CAPACIDAD_MAXIMA = 15;
