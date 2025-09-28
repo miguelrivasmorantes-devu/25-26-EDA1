@@ -10,6 +10,7 @@ class Niño {
 
     public Niño(String nombre) {
         this.nombre = nombre;
+        this.pizarrin = null;
     }
 
     public void recibirPizarrin(Pizarra pizarra) {
@@ -21,6 +22,9 @@ class Niño {
     }
 
     public void recibirMensaje(String mensaje) {
+        if (pizarrin == null) {
+            pizarrin = new Pizarra();
+        }
         pizarrin.escribirMensaje(modificarMensaje(mensaje));
         new Console().writeln("[" + nombre + "] recibe [" + mensaje + "] y ha escrito [" + pizarrin.leerMensaje() + "]");        
     }
@@ -43,10 +47,12 @@ class Niño {
     }
 
     public String mostrarMensaje() {
-        return pizarrin.leerMensaje();
+        return (pizarrin != null) ? pizarrin.leerMensaje() : "";
     }
 
     public void limpiarPizarrin() {
-        pizarrin.limpiar();
+        if (pizarrin != null) {
+            pizarrin.limpiar();
+        }
     }
 }

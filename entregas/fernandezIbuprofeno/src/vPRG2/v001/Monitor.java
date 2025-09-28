@@ -1,6 +1,7 @@
 package vPRG2.v001;
 
 import utils.Console;
+import java.util.function.Supplier;
 
 class Monitor {
     private static final int CAPACIDAD_MAXIMA = 15;
@@ -34,6 +35,13 @@ class Monitor {
         cantidad++;
     }
 
+    public void recibeNiño(Niño niño, Pizarra pizarrin) {
+        if (pizarrin != null) {
+            niño.recibirPizarrin(pizarrin);
+        }
+        recibeNiño(niño);
+    }
+
     public boolean tieneNiños() {
         return cantidad > 0;
     }
@@ -50,23 +58,25 @@ class Monitor {
         new Console().write("> " + this.nombre + " --> ");
         int actual = inicio;
         for (int i = 0; i < cantidad; i++) {
-            new Console().write(niños[actual].getNombre() + " / ");
+            Niño n = niños[actual];
+            new Console().write((n != null ? n.getNombre() : "null") + " / ");
             actual = (actual + 1) % CAPACIDAD_MAXIMA;
         }
         new Console().writeln();
     }
 
-    private void recibeNiño(Niño niño, Pizarra pizarrin) {
-        niño.recibirPizarrin(pizarrin);
-        recibeNiño(niño);
+    public void transferirHastaLlenar(Monitor destino) {
+        while (this.tieneNiños() && destino.espaciosDisponibles() > 0) {
+            new Console().writeln(" >  " + this.nombre + " ENTREGA NIÑO");
+            Niño unNiño = this.sacarNiño();
+            if (unNiño != null) {
+                destino.recibeNiño(unNiño, new Pizarra());
+            }
+        }
     }
 
-    public void entregaNiños(Monitor otroMonitor) {
-        while (tieneNiños()) {
-            new Console().writeln(" >  " + this.nombre + " ENTREGA NIÑO");
-            Niño unNiño = sacarNiño();
-            otroMonitor.recibeNiño(unNiño, new Pizarra());
-        }
+    public int espaciosDisponibles() {
+        return CAPACIDAD_MAXIMA - cantidad;
     }
 
     private Niño sacarNiño() {

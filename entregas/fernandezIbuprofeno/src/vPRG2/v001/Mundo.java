@@ -58,7 +58,10 @@ class Mundo {
         new Console().writeln("IMPORTANTE: Colas limitadas a 20 niños máximo");
         new Console().writeln("=".repeat(50));
 
-        Ludoteca unaLudoteca = new Ludoteca();
+        Monitor lydia = new Monitor("Lydia");
+        Monitor aisha = new Monitor("Aisha");
+
+        Ludoteca unaLudoteca = new Ludoteca(lydia, aisha);
         Mundo elMundo = new Mundo(unaLudoteca, 40);
         elMundo.iniciarSimulacion();
     }

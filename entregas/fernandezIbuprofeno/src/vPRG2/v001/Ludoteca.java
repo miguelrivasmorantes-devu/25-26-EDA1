@@ -5,12 +5,10 @@ import utils.Console;
 class Ludoteca {
     private Monitor lydia;
     private Monitor aisha;
-    private Pizarra pizarraDelSalon;
 
-    public Ludoteca(){
-        lydia = new Monitor("Lydia");
-        aisha = new Monitor("Aisha");
-        pizarraDelSalon = new Pizarra();
+    public Ludoteca(Monitor lydia, Monitor aisha){
+        this.lydia = lydia;
+        this.aisha = aisha;
     }
 
     public void recibirNiño(Niño niño) {
@@ -26,7 +24,7 @@ class Ludoteca {
 
     private void gestionarNiños() {
         if (lydia.tieneNiños() && !aisha.estaJugando()) {
-            lydia.entregaNiños(aisha);
+            lydia.transferirHastaLlenar(aisha);
         }        
     }
 
