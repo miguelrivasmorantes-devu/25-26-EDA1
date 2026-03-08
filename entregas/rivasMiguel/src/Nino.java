@@ -63,6 +63,7 @@ public class Nino {
         return nuevo;
     }
 
+    // Modifica al azar 'cambios' letras del mensaje original para simular errores o variaciones al escribir.
     private String modificarLetras(String msg, int cambios) {
         if (msg == null) msg = "";
         if (msg.length() == 0 || cambios == 0) return msg;
