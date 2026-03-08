@@ -13,7 +13,7 @@ public class Juego {
       return;
     }
 
-    Nino[] menores = rec.extraerMenoresConPosiciones(5);
+    Nino[] menores = rec.extraerYRespaldarMenores(5);
     if (menores.length > 0) {
       for (Nino n : menores) {
         dalsy.ponerEnCuidado(n);
