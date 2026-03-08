@@ -1,7 +1,7 @@
-public class MiRandom {
+public class GeneradorRandom {
     private long seed;
 
-    public MiRandom() {
+    public GeneradorRandom() {
         seed = System.currentTimeMillis() % 2147483647;
     }
 

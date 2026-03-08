@@ -15,12 +15,30 @@ public class Pedido {
         this.tiempoRestante = tiempoPreparacion;
     }
 
-    public Tipo getTipo() { return tipo; }
-    public int getTiempoPreparacion() { return tiempoPreparacion; }
-    public int getTiempoRestante() { return tiempoRestante; }
-    public int getTiempoLlegada() { return tiempoLlegada; }
-    public void setTiempoLlegada(int minuto) { this.tiempoLlegada = minuto; }
-    public void reducirTiempo() { tiempoRestante--; }
+    public Tipo getTipo() {
+        return tipo; 
+    }
+
+    public int getTiempoPreparacion() {
+        return tiempoPreparacion; 
+    }
+
+    public int getTiempoRestante() {
+        return tiempoRestante; 
+    }
+
+    public int getTiempoLlegada() {
+        return tiempoLlegada; 
+    }
+
+    public void setTiempoLlegada(int minuto) {
+        this.tiempoLlegada = minuto; 
+    }
+
+    public void reducirTiempo() {
+        tiempoRestante--; 
+    }
+
 
     private int generarTiempo(Tipo tipo) {
         switch (tipo) {

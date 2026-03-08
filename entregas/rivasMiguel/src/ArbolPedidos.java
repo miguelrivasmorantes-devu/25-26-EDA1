@@ -12,6 +12,7 @@ public class ArbolPedidos {
         imprimirArbol();
     }
 
+    // Inserta recursivamente un pedido en el árbol binario según el tiempo de preparación.
     private Nodo insertarRec(Nodo nodo, Pedido pedido) {
         if (nodo == null) return new Nodo(pedido);
 
@@ -77,6 +78,8 @@ public class ArbolPedidos {
         System.out.println("--------------------------");
     }
 
+    // Imprime recursivamente el árbol en forma “rotada” (nodos derechos arriba, izquierdos abajo),
+    // con sangría según el nivel del nodo para mostrar la estructura jerárquica.
     private void imprimirRec(Nodo nodo, int nivel) {
         if (nodo == null) return;
 
