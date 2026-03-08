@@ -53,9 +53,23 @@ public class Simulacion {
         System.out.println("=====================================");
     }
 
-    public int getPedidosAtendidos() { return pedidosAtendidos; }
-    public int getPedidosPendientes() { return cocinero.getPedidosPendientes(); }
-    public int getTiempoTotalEspera() { return tiempoEsperaTotal; }
-    public double getTiempoMedioEspera() { return (pedidosAtendidos == 0 ? 0 : (double) tiempoEsperaTotal / pedidosAtendidos); }
-    public int getComparacionesTotales() { return cocinero.getComparacionesTotales(); }
+    public int getPedidosAtendidos() { 
+        return pedidosAtendidos; 
+    }
+
+    public int getPedidosPendientes() { 
+        return cocinero.getPedidosPendientes(); 
+    }
+
+    public int getTiempoTotalEspera() { 
+        return tiempoEsperaTotal; 
+    }
+
+    public double getTiempoMedioEspera() { 
+        return (pedidosAtendidos == 0 ? 0 : (double) tiempoEsperaTotal / pedidosAtendidos); 
+    }
+
+    public int getComparacionesTotales() { 
+        return cocinero.getComparacionesTotales(); 
+    }
 }
