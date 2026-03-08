@@ -115,7 +115,7 @@ public class Monitora {
         return out;
     }
 
-    public Nino[] extraerMenoresConPosiciones(int edadMax) {
+    public Nino[] extraerYRespaldarMenores(int edadMax) {
         if (colaCount == 0) return new Nino[0];
 
         int originalLength = colaCount;
