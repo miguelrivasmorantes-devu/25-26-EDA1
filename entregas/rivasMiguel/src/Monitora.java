@@ -30,6 +30,24 @@ public class Monitora {
         this.esperaCount = 0;
     }
 
+    private Object[] asegurarEspacio(Object[] array, int count) {
+        if (count >= array.length) {
+            Object[] nuevo = new Object[array.length * 2];
+            for (int i = 0; i < array.length; i++) nuevo[i] = array[i];
+            return nuevo;
+        }
+        return array;
+    }
+
+    private Nino[] asegurarEspacio(Nino[] array, int count) {
+        if (count >= array.length) {
+            Nino[] nuevo = new Nino[array.length * 2];
+            for (int i = 0; i < array.length; i++) nuevo[i] = array[i];
+            return nuevo;
+        }
+        return array;
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -56,11 +74,7 @@ public class Monitora {
             Pizarra pizarrin = new Pizarra("Pizarrin de " + n.getNombre());
             n.recibirPizarrin(pizarrin);
         }
-        if (colaCount >= cola.length) {
-            Object[] nuevo = new Object[cola.length * 2];
-            for (int i = 0; i < cola.length; i++) nuevo[i] = cola[i];
-            cola = nuevo;
-        }
+        cola = asegurarEspacio(cola, colaCount);
         cola[colaCount++] = persona;
         System.out.println(nombre + " encola a " + (persona instanceof Nino ? ((Nino) persona).getNombre() : persona.toString()) + ". Total en cola: " + colaCount);
     }
@@ -93,11 +107,7 @@ public class Monitora {
     }
 
     public void ponerEnCuidado(Nino n) {
-        if (cuidadoCount >= cuidado.length) {
-            Nino[] nuevo = new Nino[cuidado.length * 2];
-            for (int i = 0; i < cuidado.length; i++) nuevo[i] = cuidado[i];
-            cuidado = nuevo;
-        }
+        cuidado = asegurarEspacio(cuidado, cuidadoCount);
         cuidado[cuidadoCount++] = n;
         System.out.println(nombre + " pone en cuidado a " + n.getNombre() + ". Total en cuidado: " + cuidadoCount);
     }
@@ -187,13 +197,11 @@ public class Monitora {
     public void recibirNino(Nino n) {
         if (organizadora != null && this != organizadora) {
             if (organizadora.getLudoteca() != null && organizadora.getLudoteca().isJuegoEnCurso()) {
-                if (esperaCount >= espera.length) {
-                    Nino[] nuevo = new Nino[espera.length * 2];
-                    for (int i = 0; i < espera.length; i++) nuevo[i] = espera[i];
-                    espera = nuevo;
-                }
+                espera = asegurarEspacio(espera, esperaCount);
                 espera[esperaCount++] = n;
-                System.out.println(nombre + " recibe a " + n.getNombre() + " pero hay un juego en curso: lo deja en espera.");
+
+                System.out.println(nombre + " recibe a " + n.getNombre() + 
+                    " pero hay un juego en curso: lo deja en espera.");
             } else {
                 System.out.println(nombre + " recibe a " + n.getNombre() + " y se lo pasa a " + organizadora.getNombre() + ".");
                 organizadora.recibirNino(n);
